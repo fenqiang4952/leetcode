@@ -4,26 +4,32 @@
   "description": "leetcode",
   "main": "index.js",
   "scripts": {
-    "test": "jest ./test"
+    "test": "jest ./test",
+    "prebuild": "rimraf dist",
+    "build": "tsc --module commonjs"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.imooc.com/coding-315/leetcode.git"
+    "url": "https://github.com/fenqiang4952/leetcode"
   },
   "keywords": [
     "leetcode"
   ],
-  "author": "cuc_ygh@163.com",
+  "author": "striveyan",
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/core": "7.1.2",
     "@babel/preset-env": "7.1.6",
+    "@types/jest": "^24.0.19",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.6.0",
     "babel-preset-env": "1.7.0",
     "eslint-plugin-jest": "22.0.0",
     "jest": "23.6.0",
-    "regenerator-runtime": "0.12.1"
+    "jest-config": "^24.9.0",
+    "regenerator-runtime": "0.12.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
   },
   "devDependencies": {
     "eslint": "5.9.0",
@@ -32,6 +38,37 @@
     "eslint-plugin-node": "8.0.0",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "jsdom",
+    "testRegex": "/test/.*\\.(test|spec)\\.(ts)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    },
+    "collectCoverageFrom": [
+      "code/*.{js,ts}",
+      "code/**/*.{js,ts}"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/boot.ts"
+    ]
   },
   "directories": {
     "test": "test"
