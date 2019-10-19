@@ -1,4 +1,4 @@
-import { countBinarySubstrings, countBinarySubstrings1 } from '../../code/string/countBinarySubstrings'
+import { countBinarySubstrings, countBinarySubstrings1, countBinarySubstrings2 } from '../../code/string/countBinarySubstrings'
 
 describe('test countBinarySubstrings', () => {
   test('countBinarySubstrings', () => {
@@ -12,5 +12,11 @@ describe('test countBinarySubstrings', () => {
   })
   test('countBinarySubstrings1', () => {
     expect(countBinarySubstrings1("10101")).toBe(4)
+  })
+  test('countBinarySubstrings2', () => {
+    expect(countBinarySubstrings2("00110011")).toBe(6)
+  })
+  test('countBinarySubstrings2', () => {
+    expect(countBinarySubstrings2("10101")).toBe(4)
   })
 })

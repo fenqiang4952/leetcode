@@ -34,11 +34,47 @@ export function countBinarySubstrings1(str: string): number {
       sum += arr[j]
       if (arr[j] !== arr[i]) p++
       if ((arr[j] === arr[i] && p)) break
-      if ( n / 2 === sum) {
+      if (n / 2 === sum) {
         count++
         break
       }
     }
   }
   return count
+}
+
+export function countBinarySubstrings2(s: string): number {
+  function replace(str: string): string {
+    return str.replace(/(01)|(10)/g, (s) => {
+      if (s === '01') {
+        return '0,1'
+      } else {
+        return '1,0'
+      }
+    })
+  }
+  let str = replace(s)
+  if (/(01)|(10)/g.test(str)) {
+    str = replace(str)
+  }
+  let count = 0
+  str.split(',').reduce((a,b) => {
+    count += Math.min(a.length, b.length)
+    return b
+  })
+  return count
+}
+
+export function countBinarySubstrings3(s: string): number {
+  let pre = 1, next = 0, n = 0
+  for (let i = 0, len = s.length; i < len - 1; i++) {
+    if (s[i] === s[i + 1]) {
+      pre++
+    } else {
+      next = pre
+      pre = 1
+    }
+    if (next >= pre) n++
+  }
+  return n
 }
